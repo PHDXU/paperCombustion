@@ -48,7 +48,7 @@ def fitness_function(params):
     model = create_model(params[0],params[1],len(xData[0]))
     history = model.fit(x_train,
                     y_train,
-                    validation_data=(x_test, y_test),
+                    validation_data=(x_val, y_val),
                     shuffle=True,
                     epochs=1000,
                     batch_size=64,
