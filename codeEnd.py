@@ -24,8 +24,9 @@ def create_model(n_layers,regularizer,input_dim):
     print(n_layers,regularizer)
     for i in range(1,round(n_layers)+1):
         model.add(Dense(round(128), input_dim=input_dim, activation='relu', kernel_regularizer=l2(regularizer)))
+        model.add(Dropout(0.3)
     model.add(Dense(1, activation='linear', kernel_regularizer=l2(0.000001)))
-    model.add(Dropout(0.3))
+    )
     model.compile(loss='mean_squared_logarithmic_error', optimizer='adam')
     return model
 
@@ -55,7 +56,6 @@ def fitness_function(params):
                     verbose=0)
 ###对测试集的误差作图
     yPred = model.predict(x_test)
-#model.save(r'E:\学术论文\爆炸压力统计\图片\finalModel\dnnModel.h5')
 
     yTestOri = pow(scaler.inverse_transform(y_test),10)#输出测试值的反归一化
     yPredOri = pow(scaler.inverse_transform(yPred.reshape(-1,1)),10)#输出预测值的反归一化
