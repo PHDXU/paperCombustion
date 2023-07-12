@@ -45,6 +45,7 @@ def fitness_function(params):
 
     # 3.划分数据
     x_train, x_test, y_train, y_test = train_test_split(X, Y, random_state=1, train_size=0.9,test_size=0.1)
+    x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, random_state=1, train_size=0.9,test_size=0.1)
 
     model = create_model(params[0],params[1],len(xData[0]))
     history = model.fit(x_train,
